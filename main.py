@@ -1,5 +1,6 @@
 import sys
 import pygame
+import random
 
 pygame.init()
 window = pygame.display.set_mode((600, 500))
@@ -11,11 +12,19 @@ rect = (x, y, 25,25)
 
 # initialise colours
 red = (255, 0, 0)
+green = (0, 255, 0)
 black = (0, 0, 0)
 
 # initialise the x and y increments in which the rectangle moves at
 x_increment = 5
 y_increment = 0
+
+# Generate random co-ordinates for the food to spawn
+# Creates a rectangle for the food
+food_x = random.randint(0, 600)
+food_y = random.randint(0, 500)
+print("x = %s \n y= %s" % (food_x, food_y))
+food = (food_x, food_y, 25, 25)
 
 # initialise the pygame clock and set fps
 clock = pygame.time.Clock()
@@ -71,7 +80,8 @@ while True:
     x += x_increment
     y += y_increment
     window.fill(black)
-    rect = pygame.draw.rect(window, red, (x, y, 25, 25))
+    rect = pygame.draw.rect(window, green, (x, y, 25, 25))
+    food = pygame.draw.rect(window, red, food)
     pygame.display.flip()
 
     clock.tick(fps)
