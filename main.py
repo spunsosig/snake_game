@@ -8,7 +8,7 @@ window = pygame.display.set_mode((600, 500))
 # initialise dimensions of rectangle
 x = 250
 y = 250
-rect = (x, y, 25,25)
+rect = pygame.Rect(x, y, 25,25)
 
 # initialise colours
 red = (255, 0, 0)
@@ -24,7 +24,7 @@ y_increment = 0
 food_x = random.randint(0, 600)
 food_y = random.randint(0, 500)
 print("x = %s \n y= %s" % (food_x, food_y))
-food = (food_x, food_y, 25, 25)
+food = pygame.Rect(food_x, food_y, 25, 25)
 
 # initialise the pygame clock and set fps
 clock = pygame.time.Clock()
@@ -75,6 +75,12 @@ while True:
             # Move Right
             if event.key == pygame.K_RIGHT:
                 move_Right()
+
+    if rect.colliderect(pygame.Rect(food).inflate(10,10)):
+        food_x = random.randint(0, 600)
+        food_y = random.randint(0, 500)
+        print("x = %s \n y= %s" % (food_x, food_y))
+        food = pygame.Rect(food_x, food_y, 25, 25)
 
     # Draw snake at every loop
     x += x_increment
