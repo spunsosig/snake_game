@@ -33,24 +33,28 @@ fps = 60
 
 def move_Up():
     global y_increment, x_increment
-    x_increment = 0
-    y_increment = -5
+    if y_increment != 5:
+        x_increment = 0
+        y_increment = -5
 
 def move_Down():
     global y_increment, x_increment
-    x_increment = 0
-    y_increment = 5
+    if y_increment != -5:
+        x_increment = 0
+        y_increment = 5
 
 
 def move_Left():
     global x_increment, y_increment
-    y_increment = 0
-    x_increment = -5
+    if x_increment != 5:
+        y_increment = 0
+        x_increment = -5
 
 def move_Right():
     global x_increment, y_increment
-    y_increment = 0
-    x_increment = 5
+    if x_increment != -5:
+        y_increment = 0
+        x_increment = 5
 
 # main game loop
 while True:
@@ -78,7 +82,7 @@ while True:
                 move_Right()
 
     # Checks the collisions of the snake and food and respawns the food
-    if rect.colliderect(pygame.Rect(food).inflate(10,10)):
+    if rect.colliderect(pygame.Rect(food).inflate(10, 10)):
         food_x = random.randint(0, 600)
         food_y = random.randint(0, 500)
         print("x = %s \n y= %s" % (food_x, food_y))
